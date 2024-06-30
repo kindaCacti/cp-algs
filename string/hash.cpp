@@ -35,7 +35,7 @@ struct HASH{
             tmp *= (long long)ch;
             tmp %= prime;
             hashes.back().push_back(hashes[hashes.size()-2][i] + tmp);
-            hashes.back()[i] %= mod;
+            hashes.back()[i] %= prime;
         }
     }
 
