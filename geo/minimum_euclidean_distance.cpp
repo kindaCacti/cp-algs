@@ -63,6 +63,6 @@ int32_t main(){
 
     sort(points.begin(), points.end());
 
-    cout<<minDistance(0, n-1);
+    cout<<minDistance(0, n-1); //returns the minimal distance squared
     return 0;
 }
