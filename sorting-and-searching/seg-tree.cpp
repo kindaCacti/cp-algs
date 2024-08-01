@@ -34,6 +34,30 @@ struct Tree{
 
         return out;
     }
+
+    int getAmmFrom(int from, int amm){
+        int ogf = from;
+        from += size;
+        long long out = 0;
+        while(out < amm){
+            int add = 1;
+            int tmp = from;
+            while(tmp){
+                if(tmp % 2) break;
+                int tf = tmp / 2;
+                if(out + tree[tf] >= amm) break;
+                if(from + add*2 >= tree.size()) return maxn;
+                tmp /= 2;
+                add *= 2;
+            }
+            if(tmp == 0) return maxn;
+            out += tree[tmp];
+            from += add;
+            ogf += add;
+        }
+
+        return ogf-1;
+    }
 }tree;
 
 int main(){
