@@ -34,16 +34,4 @@ struct Trie{
             cn = nodes[cn].children[clet];
         }
     }
- 
-    int get_min_distinct(string word){
-        int cn = 0;
-        int out = 1;
-        while(out < word.size()){
-            int clet = word[out-1]-'a';
-            if(nodes[cn].children[clet] == 0) break;
-            cn = nodes[cn].children[clet];
-            out++;
-        }
-        return min(out, (int)word.size());
-    }
 } trie;
