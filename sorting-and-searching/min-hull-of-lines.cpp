@@ -1,35 +1,38 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-struct MinHull{
+struct CHT{
     struct Line{
         long long a, b;
-        double sx;
+        long long sx;
     };
 
     vector<Line> lines;
 
     void insert(long long a, long long b){
         while(lines.size()){
-            double cp = (lines.back().b - b)/(a - lines.back().a);
-
-            if(lines.back().sx >= cp){
-                lines.pop_back();
-            }else{
+            long long ta = a - lines.back().a;
+            long long tb = lines.back().b - b;
+            long long cp = tb / ta;
+            if(tb % ta) cp++;
+            if(lines.back().sx < cp){
                 lines.push_back({a, b, cp});
                 return;
             }
+            lines.pop_back();
         }
         lines.push_back({a, b, LLONG_MIN});
     }
 
-    long long query(long long pos){
-        long long mn = 0, mx = lines.size()-1, mid;
+    long long query(long long x){
+        int mn = 0, mx = lines.size()-1, mid;
         while(mn < mx){
-            mid = (mn+mx)/2+1;
-            if(lines[mid].sx <= pos) mn = mid;
+            mid = (mn+mx)/2 + 1;
+            if(lines[mid].sx <= x) mn = mid;
             else mx = mid-1;
         }
-        return lines[mx].a * pos + lines[mx].b;
+        long long out = lines[mn].a * x + lines[mn].b;
+        return out;
     }
 };
