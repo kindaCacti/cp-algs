@@ -8,3 +8,11 @@ doing/*
 input.txt
 *.out
 *.in
+./testing
+./testing/*
+.vscode
+venv
+pdf
+cses_problems
+codeforces_problems
+szkopul_problems
